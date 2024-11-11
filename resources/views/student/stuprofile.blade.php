@@ -1,4 +1,4 @@
-<html>
+<<html>
  <head>
   <title>
    Student Profile
@@ -6,7 +6,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
   <style>
    body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             background-color: #e0e0e0;
             margin: 0;
             padding: 0;
@@ -19,9 +19,6 @@
             justify-content: space-between;
             align-items: center;
         }
-        .header img {
-            height: 40px;
-        }
         .header .logout {
             display: flex;
             align-items: center;
@@ -30,7 +27,7 @@
             margin-left: 5px;
         }
         .container {
-            background-color: #f0f0f0;
+            background-color: #d4e5b2;
             padding: 20px;
             max-width: 800px;
             margin: 20px auto;
@@ -43,12 +40,13 @@
         }
         .profile-header h2 {
             margin: 0;
-            font-size: 18px;
+            font-size: 24px;
             color: #333;
+            font-weight: bold;
         }
         .profile-header p {
             margin: 5px 0;
-            font-size: 14px;
+            font-size: 16px;
             color: #666;
         }
         .profile-content {
@@ -58,22 +56,26 @@
         .profile-picture {
             text-align: center;
             margin-right: 20px;
+            position: relative;
+            margin-top: 20px;
         }
         .profile-picture img {
             border-radius: 50%;
             width: 150px;
             height: 150px;
             object-fit: cover;
+            border: 5px solid white;
         }
         .profile-picture .upload-icon {
-            background-color: #4a5d23;
-            color: white;
+            background-color: white;
+            color: #4a5d23;
             border-radius: 50%;
             padding: 5px;
             cursor: pointer;
-            position: relative;
-            top: -20px;
-            left: 50px;
+            position: absolute;
+            bottom: -10px;
+            right: 10px;
+            border: 2px solid #4a5d23;
         }
         .profile-info {
             flex: 1;
@@ -85,10 +87,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #4a5d23;
-            color: white;
+            background-color: white;
+            color: #4a5d23;
             padding: 10px;
             border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .profile-info .info-item:hover {
+            background-color: #3b4a1a;
+            color: white;
         }
         .profile-info .info-item span {
             flex: 1;
@@ -102,20 +109,48 @@
             margin-top: 20px;
         }
         .edit-profile button {
-            background-color: #4a5d23;
-            color: white;
+            background-color: white;
+            color: #4a5d23;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .edit-profile button:hover {
+            background-color: #3b4a1a;
+            color: white;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+        }
+        .profile span {
+            margin-right: 10px;
+        }
+        .info-label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .info-value {
+            background-color: white;
+            color: #4a5d23;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .info-value i {
+            margin-left: 10px;
             cursor: pointer;
         }
   </style>
  </head>
  <body>
   <div class="header">
-   <div class="logo">
-    <img alt="University Logo" height="40" src="https://storage.googleapis.com/a1aa/image/jk431w38OQ75LFuhtx4u7yH0YfpvL0DeDiFCIc3XgI8HX8vTA.jpg" width="40"/>
-   </div>
    <div class="logout">
     <span>
      LOGOUT
@@ -145,44 +180,62 @@
      </div>
     </div>
     <div class="profile-info">
-     <div class="info-item">
+     <div class="info-label">
+      FULL NAME:
+     </div>
+     <div class="info-value">
       <span>
-       FULL NAME: NURUL FATIHAH
+       NURUL FATIHAH
       </span>
       <i class="fas fa-edit">
       </i>
      </div>
-     <div class="info-item">
+     <div class="info-label">
+      MATRIC NUMBER:
+     </div>
+     <div class="info-value">
       <span>
-       MATRIC NUMBER: A22ECXXX
+       A22ECXXX
       </span>
       <i class="fas fa-edit">
       </i>
      </div>
-     <div class="info-item">
+     <div class="info-label">
+      I/C:
+     </div>
+     <div class="info-value">
       <span>
-       I/C: 03XXXXXXXXXX
+       03XXXXXXXXXX
       </span>
       <i class="fas fa-edit">
       </i>
      </div>
-     <div class="info-item">
+     <div class="info-label">
+      ROOM NUMBER:
+     </div>
+     <div class="info-value">
       <span>
-       ROOM NUMBER: 301 - M21
+       301 - M21
       </span>
       <i class="fas fa-edit">
       </i>
      </div>
-     <div class="info-item">
+     <div class="info-label">
+      COURSE:
+     </div>
+     <div class="info-value">
       <span>
-       COURSE: 1/SECBH
+       1/SECBH
       </span>
       <i class="fas fa-edit">
       </i>
      </div>
-     <div class="info-item">
+     <div class="info-label">
+      EMAIL ADDRESS:
+     </div>
+     <div class="info-value">
       <span>
-       EMAIL ADDRESS: nurulfatihah@graduate.utm.my
+       nurulfatihah@graduate.utm.my
       </span>
       <i class="fas fa-edit">
       </i>
