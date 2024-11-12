@@ -1,4 +1,4 @@
-<<html>
+<html>
  <head>
   <title>
    Student Profile
@@ -147,6 +147,16 @@
             margin-left: 10px;
             cursor: pointer;
         }
+        .info-value input {
+            border: none;
+            outline: none;
+            background: transparent;
+            color: inherit;
+            width: 100%;
+        }
+        .hidden {
+            display: none;
+        }
   </style>
  </head>
  <body>
@@ -162,7 +172,7 @@
     <span>
      STUDENT PROFILE
     </span>
-    <img alt="Profile Icon" height="40" src="https://storage.googleapis.com/a1aa/image/POM1ZDwAJWY6O9GR3KT2KGw7fPmaJk0JveU72wG5MctJX8vTA.jpg" width="40"/>
+    <img alt="Profile Icon" height="40" src="https://storage.googleapis.com/a1aa/image/KLuQvJ5AdOYkGhweRR5ew7Ddei7jig2rEJoOfW7IQM03yCBPB.jpg" width="40"/>
    </div>
   </div>
   <div class="container">
@@ -173,20 +183,19 @@
    </div>
    <div class="profile-content">
     <div class="profile-picture">
-     <img alt="Profile Picture" height="150" src="https://storage.googleapis.com/a1aa/image/j0xvZ8A7ZLL9F5xWC50k1k7sfZhSfunwwE5jK2q18tuFX8vTA.jpg" width="150"/>
-     <div class="upload-icon">
+     <img id="profileImage" alt="Person Icon" height="150" src="https://storage.googleapis.com/a1aa/image/z1JBokokZaKyH9EJ0qfKtDMDUlJpu22u1EpOeYM1PcyytQwTA.jpg" width="150"/>
+     <div class="upload-icon" onclick="document.getElementById('fileInput').click();">
       <i class="fas fa-camera">
       </i>
      </div>
+     <input class="hidden" id="fileInput" type="file" accept="image/*" onchange="loadFile(event)"/>
     </div>
     <div class="profile-info">
      <div class="info-label">
       FULL NAME:
      </div>
      <div class="info-value">
-      <span>
-       NURUL FATIHAH
-      </span>
+      <input type="text" value="NURUL FATIHAH"/>
       <i class="fas fa-edit">
       </i>
      </div>
@@ -194,9 +203,7 @@
       MATRIC NUMBER:
      </div>
      <div class="info-value">
-      <span>
-       A22ECXXX
-      </span>
+      <input type="text" value="A22ECXXX"/>
       <i class="fas fa-edit">
       </i>
      </div>
@@ -204,9 +211,7 @@
       I/C:
      </div>
      <div class="info-value">
-      <span>
-       03XXXXXXXXXX
-      </span>
+      <input type="text" value="03XXXXXXXXXX"/>
       <i class="fas fa-edit">
       </i>
      </div>
@@ -214,9 +219,7 @@
       ROOM NUMBER:
      </div>
      <div class="info-value">
-      <span>
-       301 - M21
-      </span>
+      <input type="text" value="301 - M21"/>
       <i class="fas fa-edit">
       </i>
      </div>
@@ -224,9 +227,7 @@
       COURSE:
      </div>
      <div class="info-value">
-      <span>
-       1/SECBH
-      </span>
+      <input type="text" value="1/SECBH"/>
       <i class="fas fa-edit">
       </i>
      </div>
@@ -234,9 +235,7 @@
       EMAIL ADDRESS:
      </div>
      <div class="info-value">
-      <span>
-       nurulfatihah@graduate.utm.my
-      </span>
+      <input type="text" value="nurulfatihah@graduate.utm.my"/>
       <i class="fas fa-edit">
       </i>
      </div>
@@ -248,5 +247,11 @@
     </button>
    </div>
   </div>
+  <script>
+   function loadFile(event) {
+        var image = document.getElementById('profileImage');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    }
+  </script>
  </body>
 </html>
