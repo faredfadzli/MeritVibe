@@ -22,6 +22,7 @@
         .header .logout {
             display: flex;
             align-items: center;
+            cursor: pointer;
         }
         .header .logout i {
             margin-left: 5px;
@@ -161,7 +162,7 @@
  </head>
  <body>
   <div class="header">
-   <div class="logout">
+   <div class="logout" onclick="logout()">
     <span>
      LOGOUT
     </span>
@@ -251,6 +252,10 @@
    function loadFile(event) {
         var image = document.getElementById('profileImage');
         image.src = URL.createObjectURL(event.target.files[0]);
+    }
+
+    function logout() {
+        window.location.href = 'login.html'; // Replace 'login.html' with the actual login page URL
     }
   </script>
  </body>
