@@ -196,7 +196,7 @@
       FULL NAME:
      </div>
      <div class="info-value">
-      <input type="text" value="NURUL FATIHAH"/>
+      <input id="fullName" type="text" value="NURUL FATIHAH"/>
       <i class="fas fa-edit">
       </i>
      </div>
@@ -204,7 +204,7 @@
       MATRIC NUMBER:
      </div>
      <div class="info-value">
-      <input type="text" value="A22ECXXX"/>
+      <input id="matricNumber" type="text" value="A22ECXXX"/>
       <i class="fas fa-edit">
       </i>
      </div>
@@ -212,7 +212,7 @@
       I/C:
      </div>
      <div class="info-value">
-      <input type="text" value="03XXXXXXXXXX"/>
+      <input id="icNumber" type="text" value="03XXXXXXXXXX"/>
       <i class="fas fa-edit">
       </i>
      </div>
@@ -220,7 +220,7 @@
       ROOM NUMBER:
      </div>
      <div class="info-value">
-      <input type="text" value="301 - M21"/>
+      <input id="roomNumber" type="text" value="301 - M21"/>
       <i class="fas fa-edit">
       </i>
      </div>
@@ -228,7 +228,7 @@
       COURSE:
      </div>
      <div class="info-value">
-      <input type="text" value="1/SECBH"/>
+      <input id="course" type="text" value="1/SECBH"/>
       <i class="fas fa-edit">
       </i>
      </div>
@@ -236,15 +236,15 @@
       EMAIL ADDRESS:
      </div>
      <div class="info-value">
-      <input type="text" value="nurulfatihah@graduate.utm.my"/>
+      <input id="email" type="text" value="nurulfatihah@graduate.utm.my"/>
       <i class="fas fa-edit">
       </i>
      </div>
     </div>
    </div>
    <div class="edit-profile">
-    <button>
-     EDIT PROFILE
+    <button onclick="saveProfile()">
+     SAVE PROFILE
     </button>
    </div>
   </div>
@@ -256,6 +256,36 @@
 
     function logout() {
         window.location.href = 'login.html'; // Replace 'login.html' with the actual login page URL
+    }
+
+    function saveProfile() {
+        const profileData = {
+            fullName: document.getElementById('fullName').value,
+            matricNumber: document.getElementById('matricNumber').value,
+            icNumber: document.getElementById('icNumber').value,
+            roomNumber: document.getElementById('roomNumber').value,
+            course: document.getElementById('course').value,
+            email: document.getElementById('email').value
+        };
+
+        fetch('/api/saveProfile', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(profileData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Profile saved successfully!');
+            } else {
+                alert('Failed to save profile.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     }
   </script>
  </body>
