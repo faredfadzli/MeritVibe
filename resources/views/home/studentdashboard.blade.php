@@ -30,6 +30,19 @@
         button:hover {
             background-color: #0056b3;
         }
+        .link-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .link-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -38,5 +51,8 @@
         @csrf
         <button type="submit">Logout</button>
     </form>
+
+    <!-- Button to Show Program List -->
+    <a href="{{ route('programme.index') }}" class="link-button">Show Program List</a>
 </body>
 </html>
