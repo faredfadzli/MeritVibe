@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Programme;
 use Illuminate\Http\Request;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use Storage;
+use Auth;
 
 class ProgrammeController extends Controller
 {
@@ -126,12 +128,42 @@ class ProgrammeController extends Controller
     return redirect()->route('programme.index')->with('success', 'Program updated successfully.');
 }
 
+    public function createParticipation (Programme $programme)
+    {
 
+        return view('participation.create', compact('programme'));
+    }
+    public function storeParticipation (Programme $programme, Request $request)
+    {
+
+        $user = Auth::user();
+
+        if ($request->hasFile('proof_image')) {
+            // Store the file in the public storage directory
+            $filePath = $request->file('proof_image')->store('photos', 'public');
+        }
+        // Add a participation with additional fields
+        $user->programmes()->attach($programme->id, [
+        'proof_image' => $filePath,
+        'is_approve' => false,
+        ]);
+        return redirect()->route('dashboard')->with('success', 'Form has been send successfully.');
+
+    }
+
+    public function viewApplication(Programme $programme)
+    {
+
+        $participants = $programme->users;
+        return view('participation.index', compact('programme','participants'));
+    }
     /**
      * Remove the specified resource from storage.
+     * return redirect to participation.index
      */
     public function destroy(Programme $programme)
     {
         //
     }
+
 }

@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('participations', function (Blueprint $table) {
-            $table->id();
-
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('programme_id')->constrained('programmes')->cascadeOnDelete();
+            $table->string('proof_image')->nullable();
+            $table->boolean('is_approve')->default(0);
             $table->timestamps();
         });
     }

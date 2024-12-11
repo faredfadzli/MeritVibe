@@ -47,4 +47,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function programmes()
+    {
+        return $this->belongsToMany(Programme::class, 'participations')
+                ->withPivot('proof_image', 'is_approve')
+                ->withTimestamps();
+    }
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 }

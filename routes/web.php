@@ -29,15 +29,19 @@ Route::middleware('auth')->group(function () {
        Route::get('create', action: [ProgrammeController::class, 'create'])->name('create');
        Route::post('store',[ProgrammeController::class, 'store'])->name('store');
        Route::get('index', action: [ProgrammeController::class,'index'])->name('index');
+       Route::get('{programme}/join', [ProgrammeController::class, 'createParticipation'])->name('join');
+       Route::post('{programme}/store', [ProgrammeController::class, 'storeParticipation'])->name('partistore');
+       Route::get('{programme}/view', [ProgrammeController::class, 'viewApplication'])->name('viewApplication');
+       Route::post('{programme}/approve', [ProgrammeController::class, 'approveParticipant'])->name('approveParticipant');
        Route::get('{programme}/edit', [ProgrammeController::class, 'edit'])->name('edit');
        Route::put('{programme}/update', [ProgrammeController::class, 'update'])->name('update');
     });
 
 
-Route::name('participation.')->prefix('participation/')->group(function () {
-    Route::get('create', [ParticipationController::class, 'create'])->name('create');
-    Route::post('store', [ParticipationController::class, 'store'])->name('store');
-});
+//Route::name('participation.')->prefix('participation/')->group(function () {
+  //  Route::get('create', [ParticipationController::class, 'create'])->name('create');
+    //Route::post('store', [ParticipationController::class, 'store'])->name('store');
+//});
 
 
 

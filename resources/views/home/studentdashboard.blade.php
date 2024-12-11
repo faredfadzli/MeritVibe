@@ -51,7 +51,11 @@
         @csrf
         <button type="submit">Logout</button>
     </form>
-
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
     <!-- Button to Show Program List -->
     <a href="{{ route('programme.index') }}" class="link-button">Show Program List</a>
 </body>

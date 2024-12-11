@@ -26,4 +26,10 @@ class Programme extends Model
         'prog_pic_tel',
         'createdBy',
     ];
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'participations')
+                ->withPivot('proof_image', 'is_approve')
+                ->withTimestamps();
+    }
 }
