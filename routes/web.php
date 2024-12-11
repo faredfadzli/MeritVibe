@@ -19,6 +19,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/dashboard', action: [HomeController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', action: [HomeController::class, 'index'])->name('dashboard');
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
     Route::name('profile.')->prefix('profile/')->group(function () {
         Route::get('create', action: [ProfileController::class, 'create'])->name('create');
