@@ -65,6 +65,19 @@ class ProgrammeController extends Controller
         return redirect()->route('programme.index')->with('success', 'Program created successfully.');
     }
 
+    public function sort(Request $request){
+    // Get the sort parameters from the request or set defaults
+    $sortBy = $request->get('sort_by', 'prog_date'); // Default to sorting by date
+    $sortOrder = $request->get('sort_order', 'asc'); // Default to ascending order
+
+    // Fetch the programs, ordered by the chosen column and direction
+    $progs = Programme::orderBy($sortBy, $sortOrder)->get();
+
+    return view('programme.index', compact('progs', 'sortBy', 'sortOrder'));
+    }
+
+
+
 
     /**
      * Display the specified resource.
