@@ -42,9 +42,12 @@
                     </td>
                     <td>{{ \Carbon\Carbon::parse($participant->pivot->created_at)->format('d M Y h:i A') }}</td>
                     <td>
-                        <form action="">
-                            <input type="hidden" name="is_approve" value="true">
-                            <button type=submit>approve</button>
+                        <form action="{{ route('programme.approveParticipant', $programme->id) }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{ $participant->id }}">
+                            <button type="submit" {{ $participant->pivot->is_approve ? 'disabled' : '' }}>
+                                {{ $participant->pivot->is_approve ? 'Approved' : 'Approve' }}
+                            </button>
                         </form>
                     </td>
                 </tr>

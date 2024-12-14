@@ -25,18 +25,10 @@
         <div class="mb-3">
             <label for="prog_time" class="form-label">Program Time:</label>
 
-            <div class="d-flex">
-                <!-- Hours Input -->
-                <input type="number" name="prog_hours" id="prog_hours" class="form-control w-25" min="1" max="12" placeholder="HH" value="{{ old('prog_hours') }}" required>
-                <span class="mx-2">:</span>
-
-                <!-- Minutes Input -->
-                <input type="number" name="prog_minutes" id="prog_minutes" class="form-control w-25" min="0" max="59" placeholder="MM" value="{{ old('prog_minutes') }}" required>
-                
-                <select name="prog_am_pm" id="prog_am_pm" class="form-select w-25 ml-2">
-                    <option value="AM" {{ old('prog_am_pm') == 'AM' ? 'selected' : '' }}>AM</option>
-                    <option value="PM" {{ old('prog_am_pm') == 'PM' ? 'selected' : '' }}>PM</option>
-                </select>
+            <div class="mb-3">
+                <label for="prog_time" class="form-label">Programme Time</label>
+                <input type="time" class="form-control" id="prog_time" name="prog_time" value="{{ old('prog_time') }}" required>
+                <small class="form-text text-muted">Enter time in 24-hour format (HH:MM).</small>
             </div>
 
             <button type="button" id="toggle-time-format" class="btn btn-outline-success btn-sm mt-2">Switch to 24-hour format</button>

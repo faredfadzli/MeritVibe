@@ -171,10 +171,28 @@ class ProgrammeController extends Controller
         return view('participation.index', compact('programme','participants'));
     }
     /**
-     * Remove the specified resource from storage.
      * return redirect to participation.index
      */
-    public function destroy(Programme $programme)
+
+     public function approveParticipant(Programme $programme, Request $request)
+     {
+         // Find the specific participation entry for the user and programme
+         $participant = $programme->users()
+             ->where('user_id', $request->user_id)
+             ->first();
+
+         // Check if the participant exists
+         if (!$participant) {
+             return redirect()->back()->with('error', 'Participant not found.');
+         }
+
+         // Update the approval status for this specific user
+         $participant->pivot->is_approve = true;
+         $participant->pivot->save();
+
+         return redirect()->back()->with('success', 'Participant approved successfully.');
+     }
+         public function destroy(Programme $programme)
     {
         //
     }
