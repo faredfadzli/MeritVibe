@@ -65,7 +65,9 @@
                         <td>{{ $programme->prog_pic_tel }}</td>
                         <td>{{ $programme->createdBy }}</td>
                         <td>
+                            @if (auth()->user()->role == 1)
                             <a href="{{ route('programme.edit', $programme) }}" class="btn btn-warning btn-sm">Edit</a>
+                            @endif
                             @if(Auth::user()->role == 0)
                                 <a href="{{ route('programme.join', $programme) }}" class="btn btn-success btn-sm">Join</a>
                             @elseif(Auth::user()->role == 1)

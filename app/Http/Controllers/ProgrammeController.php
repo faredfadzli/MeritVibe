@@ -92,6 +92,9 @@ class ProgrammeController extends Controller
      */
     public function edit(Programme $programme)
     {
+        if (auth()->user()->role != 1) {
+            return redirect()->route('programme.index')->with('error', 'You are not authorized to edit programmes.');
+        }
         return view('programme.edit', compact('programme'));
     }
 
