@@ -200,4 +200,16 @@ class ProgrammeController extends Controller
         //
     }
 
+    public function rejectParticipant(Programme $programme, Request $request){
+        $participant = $programme->users() // Find the specific participation entry for the user and programme    
+            ->where('user_id', $request->user_id)
+            ->first();
+        // Check if the participant exists
+        if (!$participant) {        
+            return redirect()->back()->with('error', 'Participant not found.');
+        }
+        $participant->pivot->is_rejected = false;  // Update the rejection status for this specific user   
+        $participant->pivot->save(); // Optional: Reset approval if rejecting    
+        return redirect()->back()->with('success', 'Participant rejected successfully.');
+    }
 }
