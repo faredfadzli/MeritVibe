@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Programme;
+use App\Models\User;
 use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use Storage;
@@ -191,10 +192,34 @@ class ProgrammeController extends Controller
 
          // Update the approval status for this specific user
          $participant->pivot->is_approve = true;
+         $participant->pivot->point_awarded = $request->point_awarded;
+         $participant->pivot->comment = $request->comment;
          $participant->pivot->save();
 
          return redirect()->back()->with('success', 'Participant approved successfully.');
-     }
+    }
+
+    public function userIndex()
+    {
+
+        $students = User::where('role', '0')->get();
+        return view('participation.userIndex', compact('students'));
+        // Retrieve participants for the programme
+        //  $participants = $programme->users()->withPivot('point_awarded', 'comment')->get();
+
+        // Return the view with participants
+        //return view('participationList', compact('participants', 'programme'));
+    }
+    public function participationList($user_id)
+    {
+        // Get the user by ID
+        $user = User::findOrFail($user_id);
+
+        // Fetch all the programmes the user has participated in, along with pivot data (point_awarded, comment, is_approve)
+        $participations = $user->programmes()->withPivot('point_awarded', 'comment', 'is_approve')->get();
+        // Return the view with the participation data
+        return view('participation.participationList', compact('user', 'participations'));
+    }
          public function destroy(Programme $programme)
     {
         //

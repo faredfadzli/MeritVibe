@@ -29,7 +29,7 @@ class Programme extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'participations')
-                ->withPivot('proof_image', 'is_approve')
+                ->withPivot('proof_image', 'is_approve', 'point_awarded', 'comment')
                 ->withTimestamps();
     }
 }

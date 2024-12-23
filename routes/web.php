@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function () {
        Route::post('{programme}/approve', [ProgrammeController::class, 'approveParticipant'])->name('approveParticipant');
        Route::get('{programme}/edit', [ProgrammeController::class, 'edit'])->name('edit');
        Route::put('{programme}/update', [ProgrammeController::class, 'update'])->name('update');
+       Route::get('user/list', [ProgrammeController::class, 'userIndex'])->name('userIndex');
+       Route::get('participation/{user_id}/list', [ProgrammeController::class, 'participationList'])->name('participationList');
     });
 
 

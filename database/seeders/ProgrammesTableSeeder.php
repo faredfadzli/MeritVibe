@@ -23,6 +23,7 @@ class ProgrammesTableSeeder extends Seeder
                 'prog_pic_name' => 'John Doe',
                 'prog_pic_email' => 'johndoe@example.com',
                 'prog_pic_tel' => '0123456789',
+                'prog_default_point' => '3',
                 'createdBy' => 1, // Replace with a valid user ID
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -37,6 +38,7 @@ class ProgrammesTableSeeder extends Seeder
                 'prog_pic_name' => 'Jane Smith',
                 'prog_pic_email' => 'janesmith@example.com',
                 'prog_pic_tel' => '0987654321',
+                'prog_default_point' => '3',
                 'createdBy' => 1, // Replace with a valid user ID
                 'created_at' => now(),
                 'updated_at' => now(),
