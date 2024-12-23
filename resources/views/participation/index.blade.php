@@ -38,7 +38,7 @@
                             No Proof Image
                         @endif
                     </td>
-                    <td>{{ $participant->pivot->is_approve ? 'Approved' : 'Pending' : 'Rejected'}}
+                    <td>{{ $participant->pivot->is_approve ? 'Approved' : 'Pending'}}
                     </td>
                     <td>{{ \Carbon\Carbon::parse($participant->pivot->created_at)->format('d M Y h:i A') }}</td>
                     <td>
@@ -49,11 +49,11 @@
                                 {{ $participant->pivot->is_approve ? 'Approved' : 'Approve' }}
                             </button>
                         </form>
-                        <form action="{{ route('programme.rejectParticipant', $programme-&gt;id) }}" class="inline-block" method="POST">
+                        <form action="{{ route('programme.rejectParticipant', $programme->id) }}" method="POST" style="display: inline;">
                             @csrf
-                            <input name="user_id" type="hidden" value="{{ $participant-&gt;id }}"/>
-                            <button $participant-="" class="btn-reject" type="submit" {{="">pivot-&gt;is_approve ? 'disabled' : '' }}&gt; 
-                                Reject
+                            <input type="hidden" name="user_id" value="{{ $participant->id }}">
+                            <button type="submit" {{ $participant->pivot->is_rejected ? 'disabled' : '' }}>
+                                {{ $participant->pivot->is_rejected ? 'Rejected' : 'Reject' }}
                             </button>
                         </form>
                     </td>
