@@ -162,7 +162,7 @@ class ProgrammeController extends Controller
         // Add a participation with additional fields
         $user->programmes()->attach($programme->id, [
         'proof_image' => $filePath,
-        'is_approve' => false,
+        'is_approve' => null,
         ]);
         return redirect()->route('dashboard')->with('success', 'Form has been send successfully.');
 
@@ -179,25 +179,39 @@ class ProgrammeController extends Controller
      */
 
      public function approveParticipant(Programme $programme, Request $request)
-     {
-         // Find the specific participation entry for the user and programme
-         $participant = $programme->users()
-             ->where('user_id', $request->user_id)
-             ->first();
+    {
+        // Find the specific participation entry for the user and programme
+        $participant = $programme->users()
+            ->where('user_id', $request->user_id)
+            ->first();
 
-         // Check if the participant exists
-         if (!$participant) {
-             return redirect()->back()->with('error', 'Participant not found.');
-         }
+        // Check if the participant exists
+        if (!$participant) {
+            return redirect()->back()->with('error', 'Participant not found.');
+        }
 
-         // Update the approval status for this specific user
-         $participant->pivot->is_approve = true;
-         $participant->pivot->point_awarded = $request->point_awarded;
-         $participant->pivot->comment = $request->comment;
-         $participant->pivot->save();
+        // Default message if no valid action is provided
+        $message = 'No action performed. Invalid request.';
 
-         return redirect()->back()->with('success', 'Participant approved successfully.');
+        // Handle the action based on the submitted value
+        if ($request->action == '1') {
+        $participant->pivot->is_approve = true;
+        $participant->pivot->point_awarded = $request->point_awarded;
+        $participant->pivot->comment = $request->comment;
+        $message = 'Participant approved successfully.';
+        } elseif ($request->action == '0') {
+        $participant->pivot->is_approve = false;
+        $participant->pivot->comment = 'Rejected: ' . ($request->comment ?? 'No additional comment');
+        $participant->pivot->point_awarded = 0; // No points awarded for rejection
+        $message = 'Participant rejected successfully.';
     }
+
+        // Save the updated pivot record
+        $participant->pivot->save();
+
+        return redirect()->back()->with('success', $message);
+}
+
 
     public function userIndex()
     {
@@ -225,16 +239,16 @@ class ProgrammeController extends Controller
         //
     }
 
-    public function rejectParticipant(Programme $programme, Request $request){
-        $participant = $programme->users() // Find the specific participation entry for the user and programme    
+        /*public function rejectParticipant(Programme $programme, Request $request){
+        $participant = $programme->users() // Find the specific participation entry for the user and programme
             ->where('user_id', $request->user_id)
             ->first();
         // Check if the participant exists
-        if (!$participant) {        
+        if (!$participant) {
             return redirect()->back()->with('error', 'Participant not found.');
         }
-        $participant->pivot->is_rejected = false;  // Update the rejection status for this specific user   
-        $participant->pivot->save(); // Optional: Reset approval if rejecting    
+        $participant->pivot->is_rejected = false;  // Update the rejection status for this specific user
+        $participant->pivot->save(); // Optional: Reset approval if rejecting
         return redirect()->back()->with('success', 'Participant rejected successfully.');
-    }
+    }*/
 }

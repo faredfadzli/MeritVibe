@@ -15,7 +15,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('programme_id')->constrained('programmes')->cascadeOnDelete();
             $table->string('proof_image')->nullable();
-            $table->boolean('is_approve')->default(0);
+            $table->boolean('is_approve')->nullable();
             $table->string('point_awarded')->nullable();
             $table->string('comment')->nullable();
             $table->timestamps();
