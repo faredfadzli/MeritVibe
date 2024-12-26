@@ -34,37 +34,38 @@ class ProgrammeController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'prog_name' => 'required|string|max:255',
-            'prog_date' => 'required|date', // Ensures a valid date format
-            'prog_time' => 'required|date_format:H:i', // Validates time in HH:MM format
-            'prog_place' => 'required|string|max:255',
-            'prog_poster' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validates optional image upload
-            'prog_managed_by' => 'required|string|max:255',
-            'prog_pic_name' => 'required|string|max:255',
-            'prog_pic_email' => 'nullable|email|max:255', // Optional but must be valid email
-            'prog_pic_tel' => 'required|string',//  Validates phone number
-        ]);
+{
+    $validatedData = $request->validate([
+        'prog_name' => 'required|string|max:255',
+        'prog_date' => 'required|date',
+        'prog_time' => 'required|date_format:H:i',
+        'prog_place' => 'required|string|max:255',
+        'prog_poster' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'prog_managed_by' => 'required|string|max:255',
+        'prog_pic_name' => 'required|string|max:255',
+        'prog_pic_email' => 'nullable|email|max:255',
+        'prog_pic_tel' => 'required|string',
+        'prog_default_point' => 'required|integer|min:0', // Ensure it's a positive integer
+    ]);
 
-        // If validation passes, you can proceed with storing the data
-        $program = new Programme();
-        $program->prog_name = $validatedData['prog_name'];
-        $program->prog_date = $validatedData['prog_date'];
-        $program->prog_time = $validatedData['prog_time'];
-        $program->prog_place = $validatedData['prog_place'];
-        $program->prog_poster = $request->hasFile('prog_poster')
-            ? $request->file('prog_poster')->store('posters', 'public')
-            : null;
-        $program->prog_managed_by = $validatedData['prog_managed_by'];
-        $program->prog_pic_name = $validatedData['prog_pic_name'];
-        $program->prog_pic_email = $validatedData['prog_pic_email'];
-        $program->prog_pic_tel = $validatedData['prog_pic_tel'];
-        $program->createdBy = auth()->id(); // Sets the authenticated user as the creator
-        $program->save();
+    $program = new Programme();
+    $program->prog_name = $validatedData['prog_name'];
+    $program->prog_date = $validatedData['prog_date'];
+    $program->prog_time = $validatedData['prog_time'];
+    $program->prog_place = $validatedData['prog_place'];
+    $program->prog_poster = $request->hasFile('prog_poster')
+        ? $request->file('prog_poster')->store('posters', 'public')
+        : null;
+    $program->prog_managed_by = $validatedData['prog_managed_by'];
+    $program->prog_pic_name = $validatedData['prog_pic_name'];
+    $program->prog_pic_email = $validatedData['prog_pic_email'];
+    $program->prog_pic_tel = $validatedData['prog_pic_tel'];
+    $program->prog_default_point = $validatedData['prog_default_point'];
+    $program->createdBy = auth()->id();
+    $program->save();
 
-        return redirect()->route('programme.index')->with('success', 'Program created successfully.');
-    }
+    return redirect()->route('programme.index')->with('success', 'Program created successfully.');
+}
 
     public function sort(Request $request){
     // Get the sort parameters from the request or set defaults

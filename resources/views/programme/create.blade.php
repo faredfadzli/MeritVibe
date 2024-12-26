@@ -91,6 +91,14 @@
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
+        <!-- Program Default Point -->
+<div class="mb-3">
+    <label for="prog_default_point" class="form-label">Default Point:</label>
+    <input type="number" name="prog_default_point" id="prog_default_point" class="form-control" placeholder="Enter Default Point" value="{{ old('prog_default_point') }}" required>
+    @error('prog_default_point')
+        <div class="text-danger">{{ $message }}</div>
+    @enderror
+</div>
 
         <!-- Submit Button -->
         <div class="text-center">
