@@ -69,7 +69,12 @@
                             <a href="{{ route('programme.edit', $programme) }}" class="btn btn-warning btn-sm">Edit</a>
                             @endif
                             @if(Auth::user()->role == 0)
-                                <a href="{{ route('programme.join', $programme) }}" class="btn btn-success btn-sm">Join</a>
+                                    @if ($programme->users->contains(Auth::id()))
+                                    <!-- User has already joined -->
+                                        <button class="btn btn-secondary" disabled>Joined</button>
+                                    @else
+                                        <a href="{{ route('programme.join', $programme) }}" class="btn btn-success btn-sm">Join</a>
+                                    @endif
                             @elseif(Auth::user()->role == 1)
                                 <a href="{{ route('programme.viewApplication', $programme) }}" class="btn btn-info btn-sm">View Application</a>
                             @endif

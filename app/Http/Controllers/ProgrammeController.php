@@ -147,14 +147,18 @@ class ProgrammeController extends Controller
 
     public function createParticipation (Programme $programme)
     {
-
+        if ($programme->users->contains(Auth::user()->id)) {
+            return redirect()->route('programme.index')->with('error', 'You have already joined this programme.');
+        }
         return view('participation.create', compact('programme'));
     }
     public function storeParticipation (Programme $programme, Request $request)
     {
 
         $user = Auth::user();
-
+        if ($programme->users->contains($user->id)) {
+            return redirect()->route('programme.index')->with('error', 'You have already joined this programme.');
+        }
         if ($request->hasFile('proof_image')) {
             // Store the file in the public storage directory
             $filePath = $request->file('proof_image')->store('photos', 'public');
