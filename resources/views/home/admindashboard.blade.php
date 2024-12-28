@@ -122,6 +122,7 @@
             <div class="action-buttons">
                 <a href="{{ route('programme.create') }}" class="btn">Create Program</a>
                 <a href="{{ route('programme.index') }}" class="btn">List of Programs</a>
+                <a href= "{{ route('programme.userIndex') }}" class="btn">List of Students Participation</a>
             </div>
 
             <!-- Logout Button -->

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('prog_pic_name');
             $table->string('prog_pic_email')->nullable();
             $table->string('prog_pic_tel');
+            $table->string('prog_default_point');
             $table->foreignId('createdBy')->constrained('users'); // Adds the user ID as a foreign key
             $table->timestamps();
         });

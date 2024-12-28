@@ -50,8 +50,13 @@ class User extends Authenticatable
     public function programmes()
     {
         return $this->belongsToMany(Programme::class, 'participations')
-                ->withPivot('proof_image', 'is_approve')
+                ->withPivot('proof_image', 'is_approve', 'point_awarded','comment')
                 ->withTimestamps();
+    }
+    public function getTotalPointsAttribute()
+    {
+        // Sum the 'point_awarded' column from the pivot table
+        return $this->programmes()->sum('participations.point_awarded');
     }
     public function profile()
     {

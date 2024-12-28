@@ -69,7 +69,12 @@
                             <a href="{{ route('programme.edit', $programme) }}" class="btn btn-warning btn-sm">Edit</a>
                             @endif
                             @if(Auth::user()->role == 0)
-                                <a href="{{ route('programme.join', $programme) }}" class="btn btn-success btn-sm">Join</a>
+                                    @if ($programme->users->contains(Auth::id()))
+                                    <!-- User has already joined -->
+                                        <button class="btn btn-secondary" disabled>Joined</button>
+                                    @else
+                                        <a href="{{ route('programme.join', $programme) }}" class="btn btn-success btn-sm">Join</a>
+                                    @endif
                             @elseif(Auth::user()->role == 1)
                                 <a href="{{ route('programme.viewApplication', $programme) }}" class="btn btn-info btn-sm">View Application</a>
                             @endif
@@ -93,12 +98,20 @@
 <!-- CSS for Enhanced Aesthetics and Responsiveness -->
 <style>
     body {
-        background-color: #e9f7e2;
+        background-image: url('/image/bground.jpg'); /* Add your background image here */
+        background-size: cover; /* Ensures the background image covers the whole screen */
+        background-position: center; /* Centers the background image */
+        background-repeat: no-repeat; /* Prevents the background image from repeating */
         font-family: 'Poppins', sans-serif;
+        color: #333; /* Default text color for readability */
     }
 
     .container {
         padding: 20px;
+        background-color: rgba(255, 255, 255, 0.9); /* Light overlay for readability */
+        border-radius: 10px;
+        margin-top: 40px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
     h1 {
@@ -123,7 +136,6 @@
         text-align: center;
         padding: 12px;
         vertical-align: middle;
-        position: relative; /* Added for better control of button placement */
     }
 
     .btn-sort {
@@ -142,13 +154,20 @@
 
     .btn-sm {
         font-size: 14px;
-        margin: 2px 5px; /* Added space between buttons */
+        margin: 2px 5px;
     }
 
     td a.btn {
-        display: inline-block; /* Ensures buttons stay on the same line */
+        display: inline-block;
     }
 
+    .alert {
+        margin-bottom: 20px;
+        padding: 15px;
+        border-radius: 5px;
+    }
+
+    /* Mobile Responsiveness */
     @media (max-width: 768px) {
         .table {
             font-size: 12px;
@@ -164,7 +183,8 @@
 
         td .btn {
             font-size: 12px;
-            margin: 4px 2px; /* Adjusted margins for smaller screens */
+            margin: 4px 2px;
         }
     }
 </style>
+
