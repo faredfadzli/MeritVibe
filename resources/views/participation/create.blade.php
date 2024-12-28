@@ -7,17 +7,19 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+            background: url('{{ asset('image/student.jpeg') }}') no-repeat center center fixed; /* Set background image */
+            background-size: cover; /* Ensure the image covers the entire background */
             padding: 20px;
             max-width: 500px;
             margin: 0 auto;
+            color: #333; /* Default text color */
         }
         h1 {
             text-align: center;
-            color: #007bff;
+            color: #001f3d; /* Set text color to navy blue for "Create Participation" */
         }
         form {
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for form */
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -54,7 +56,7 @@
 </head>
 <body>
     <h1>Create Participation</h1>
-    <form action="{{ route('programme.partistore',$programme) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('programme.partistore', $programme) }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <!-- Proof Image -->
