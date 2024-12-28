@@ -67,6 +67,32 @@ class ProgrammeController extends Controller
     return redirect()->route('programme.index')->with('success', 'Program created successfully.');
 }
 
+    public function addComment(Request $request, $programmeId, $participantId)
+    {
+        // Validate the comment
+        $request->validate([
+            'admin_comment' => 'required|string|max:255',
+        ]);
+
+        // Find the participant and their pivot record with the given programme
+        $programme = Programme::findOrFail($programmeId);
+        $participant = Participant::findOrFail($participantId);
+
+        // Check if the participant is part of the programme
+        $pivot = $programme->participants()->where('participant_id', $participant->id)->first();
+
+        if ($pivot) {
+            // Save the comment to the pivot table
+            $pivot->comment = $request->input('admin_comment');
+            $pivot->save();
+        }
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Comment added successfully.');
+    }
+
+
+
     public function sort(Request $request){
     // Get the sort parameters from the request or set defaults
     $sortBy = $request->get('sort_by', 'prog_date'); // Default to sorting by date

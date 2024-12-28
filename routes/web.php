@@ -40,6 +40,9 @@ Route::middleware('auth')->group(function () {
        Route::get('participation/{user_id}/list', [ProgrammeController::class, 'participationList'])->name('participationList');
     });
 
+    Route::post('/programme/{programme}/participant/{participant}/comment', [ProgrammeController::class, 'addComment'])->name('programme.addComment');
+
+
 
 //Route::name('participation.')->prefix('participation/')->group(function () {
   //  Route::get('create', [ParticipationController::class, 'create'])->name('create');

@@ -91,7 +91,7 @@
         <h1 class="mb-4">{{$user->spr_nama}} Participation List</h1>
 
         <!-- Back to Dashboard Button -->
-        <a href="{{ route('admindashboard') }}" class="btn btn-back mb-3">Back to Dashboard</a>
+        <a href="{{ route('dashboard') }}" class="btn btn-back mb-3">Back to Dashboard</a>
 
         @if($participations->count() > 0)
             <table class="table table-bordered table-striped">
