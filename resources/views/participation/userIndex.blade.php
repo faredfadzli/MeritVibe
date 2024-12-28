@@ -64,6 +64,21 @@
             border-color: #388E3C;
         }
 
+        .btn-back {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+
+        .btn-back:hover {
+            background-color: #388E3C;
+        }
+
         p {
             color: white;
             font-size: 1.2rem;
@@ -73,6 +88,9 @@
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">Participation List</h1>
+
+        <!-- Back to Dashboard Button -->
+        <a href="{{ route('dashboard') }}" class="btn btn-back mb-3">Back to Dashboard</a>
 
         @if($students->count() > 0)
             <table class="table table-bordered table-striped">
@@ -96,7 +114,7 @@
                             <td>{{ $participant->ssm_matrik }}</td>
                             <td>{{ $participant->ssm_kursus }}</td>
                             <td>{{ $participant->totalPoints }}</td>
-                            <td>
+                            <td> 
                                 <a href="{{ route('programme.participationList', $participant->id) }}" class="btn btn-primary btn-sm">View Participation Programmes</a>
                             </td>
                         </tr>
