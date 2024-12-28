@@ -42,6 +42,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/programme/{programme}/participant/{participant}/comment', [ProgrammeController::class, 'addComment'])->name('programme.addComment');
 
+    Route::post('/programme/store', [ProgramController::class, 'store'])->name('programme.store');
+
+
 
 
 //Route::name('participation.')->prefix('participation/')->group(function () {
