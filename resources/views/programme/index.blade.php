@@ -14,32 +14,16 @@
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>
-                            <a href="{{ route('programme.index', ['sort_by' => 'id', 'sort_order' => request()->sort_by == 'id' && request()->sort_order == 'asc' ? 'desc' : 'asc']) }}" class="btn-sort">
-                                #
-                            </a>
-                        </th>
-                        <th>
-                            <a href="{{ route('programme.index', ['sort_by' => 'prog_name', 'sort_order' => request()->sort_by == 'prog_name' && request()->sort_order == 'asc' ? 'desc' : 'asc']) }}" class="btn-sort">
-                                Program Name
-                            </a>
-                        </th>
-                        <th>
-                            <a href="{{ route('programme.index', ['sort_by' => 'prog_date', 'sort_order' => request()->sort_by == 'prog_date' && request()->sort_order == 'asc' ? 'desc' : 'asc']) }}" class="btn-sort">
-                                Date
-                            </a>
-                        </th>
-                        <th>
-                            <a href="{{ route('programme.index', ['sort_by' => 'prog_time', 'sort_order' => request()->sort_by == 'prog_time' && request()->sort_order == 'asc' ? 'desc' : 'asc']) }}" class="btn-sort">
-                                Time
-                            </a>
-                        </th>
+                        <th>#</th>
+                        <th>Program Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
                         <th>Place</th>
                         <th>Poster</th>
                         <th>Managed By</th>
                         <th>Pic Name</th>
                         <th>Pic Email</th>
-                        <th>Pic Contact Number</th>
+                        <th>Pic Contact</th>
                         <th>Created By</th>
                         <th>Actions</th>
                     </tr>
@@ -54,9 +38,9 @@
                         <td>{{ $programme->prog_place }}</td>
                         <td>
                             @if($programme->prog_poster)
-                                <a href="{{ asset('storage/' . $programme->prog_poster) }}" target="_blank" class="text-success">View Poster</a>
+                                <a href="{{ asset('storage/' . $programme->prog_poster) }}" target="_blank" class="text-success">View</a>
                             @else
-                                No Poster
+                                N/A
                             @endif
                         </td>
                         <td>{{ $programme->prog_managed_by }}</td>
@@ -66,17 +50,16 @@
                         <td>{{ $programme->createdBy }}</td>
                         <td>
                             @if (auth()->user()->role == 1)
-                            <a href="{{ route('programme.edit', $programme) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{{ route('programme.edit', $programme) }}" class="btn btn-warning btn-sm">Edit</a>
                             @endif
                             @if(Auth::user()->role == 0)
-                                    @if ($programme->users->contains(Auth::id()))
-                                    <!-- User has already joined -->
-                                        <button class="btn btn-secondary" disabled>Joined</button>
-                                    @else
-                                        <a href="{{ route('programme.join', $programme) }}" class="btn btn-success btn-sm">Join</a>
-                                    @endif
+                                @if ($programme->users->contains(Auth::id()))
+                                    <button class="btn btn-secondary btn-sm" disabled>Joined</button>
+                                @else
+                                    <a href="{{ route('programme.join', $programme) }}" class="btn btn-success btn-sm">Join</a>
+                                @endif
                             @elseif(Auth::user()->role == 1)
-                                <a href="{{ route('programme.viewApplication', $programme) }}" class="btn btn-info btn-sm">View Application</a>
+                                <a href="{{ route('programme.viewApplication', $programme) }}" class="btn btn-info btn-sm">View</a>
                             @endif
                         </td>
                     </tr>
@@ -95,23 +78,24 @@
     </div>
 </div>
 
-<!-- CSS for Enhanced Aesthetics and Responsiveness -->
+<!-- CSS for Improved Aesthetics -->
 <style>
     body {
-        background-image: url('/image/bground.jpg'); /* Add your background image here */
-        background-size: cover; /* Ensures the background image covers the whole screen */
-        background-position: center; /* Centers the background image */
-        background-repeat: no-repeat; /* Prevents the background image from repeating */
+        background-image: url('/image/bground.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
         font-family: 'Poppins', sans-serif;
-        color: #333; /* Default text color for readability */
+        color: #333;
     }
 
     .container {
+        background-color: rgba(255, 255, 255, 0.9);
         padding: 20px;
-        background-color: rgba(255, 255, 255, 0.9); /* Light overlay for readability */
         border-radius: 10px;
-        margin-top: 40px;
+        margin-top: 20px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        overflow-x: auto; /* Ensure horizontal scrolling */
     }
 
     h1 {
@@ -120,71 +104,53 @@
     }
 
     .table {
+        width: 100%;
+        min-width: 900px; /* Force table to scroll if too wide */
         background-color: white;
         border-radius: 10px;
-        overflow: hidden;
+        margin-bottom: 20px;
     }
 
     th {
         background: linear-gradient(135deg, #4CAF50, #2e7d32);
         color: white;
+        font-size: 14px;
         text-align: center;
-        font-weight: bold;
+        white-space: nowrap; /* Prevents wrapping */
     }
 
     td {
         text-align: center;
-        padding: 12px;
-        vertical-align: middle;
+        font-size: 13px;
+        padding: 10px;
     }
 
     .btn-sort {
         color: white;
         text-decoration: none;
-        padding: 8px 16px;
+        padding: 6px 12px;
         border-radius: 5px;
+        font-size: 12px;
         background: linear-gradient(135deg, #66bb6a, #43a047);
-        transition: all 0.3s ease;
+        transition: 0.3s;
     }
 
     .btn-sort:hover {
         background: linear-gradient(135deg, #43a047, #2e7d32);
-        transform: translateY(-3px);
     }
 
     .btn-sm {
-        font-size: 14px;
-        margin: 2px 5px;
+        font-size: 12px;
+        margin: 2px;
     }
 
-    td a.btn {
-        display: inline-block;
-    }
-
-    .alert {
-        margin-bottom: 20px;
-        padding: 15px;
-        border-radius: 5px;
-    }
-
-    /* Mobile Responsiveness */
     @media (max-width: 768px) {
-        .table {
-            font-size: 12px;
+        th, td {
+            font-size: 11px;
         }
 
         .btn-lg {
-            font-size: 14px;
-        }
-
-        th, td {
-            padding: 8px;
-        }
-
-        td .btn {
             font-size: 12px;
-            margin: 4px 2px;
         }
     }
 </style>
-

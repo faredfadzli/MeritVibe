@@ -88,60 +88,12 @@
             </div>
         </div>
 
-<<<<<<< HEAD
         <!-- Button Container (Centered) -->
         <div class="d-flex justify-content-between mt-5">
             <!-- Create Program Button -->
             <button type="submit" class="btn btn-success btn-lg w-45 rounded-pill">Create Program</button>
             <!-- Back to Dashboard Button -->
             <a href="{{ route('dashboard') }}" class="btn btn-outline-success btn-lg w-45 rounded-pill">Back to Dashboard</a>
-=======
-        <!-- Program PIC Name -->
-        <div class="mb-3">
-            <label for="prog_pic_name" class="form-label">PIC Name:</label>
-            <input type="text" name="prog_pic_name" id="prog_pic_name" class="form-control" placeholder="Enter PIC Name" value="{{ old('prog_pic_name') }}" required>
-            @error('prog_pic_name')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <!-- Program PIC Email -->
-        <div class="mb-3">
-            <label for="prog_pic_email" class="form-label">PIC Email:</label>
-            <input type="email" name="prog_pic_email" id="prog_pic_email" class="form-control" placeholder="Enter PIC Email" value="{{ old('prog_pic_email') }}">
-            @error('prog_pic_email')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <!-- Program PIC Telephone -->
-        <div class="mb-3">
-            <label for="prog_pic_tel" class="form-label">PIC Telephone:</label>
-            <input type="text" name="prog_pic_tel" id="prog_pic_tel" class="form-control" placeholder="Enter PIC Telephone" value="{{ old('prog_pic_tel') }}" required>
-            @error('prog_pic_tel')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <!-- Program Default Point -->
-<div class="mb-3">
-    <label for="prog_default_point" class="form-label">Default Point:</label>
-    <input type="number" name="prog_default_point" id="prog_default_point" class="form-control" placeholder="Enter Default Point" value="{{ old('prog_default_point') }}" required>
-    @error('prog_default_point')
-        <div class="text-danger">{{ $message }}</div>
-    @enderror
-</div>
-
-        <!-- Submit Button -->
-        <div class="text-center">
-            <button type="submit" class="btn btn-aesthetic btn-lg w-50 mb-4">Create Program</button>
-        </div>
-
-        <!-- Back to Dashboard Button -->
-        <div class="d-flex justify-content-end mt-3">
-            <a href="{{ route('dashboard') }}" class="btn btn-outline-aesthetic btn-lg d-inline-flex align-items-center">
-                <i class="bi bi-arrow-left me-2"></i> Back to Dashboard
-            </a>
->>>>>>> 745598b655db92e630634572a5a6b2ebb4979376
         </div>
     </div>
 </form>
