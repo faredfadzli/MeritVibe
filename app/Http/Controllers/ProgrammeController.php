@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Participation;
 use App\Models\Programme;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -76,7 +77,7 @@ class ProgrammeController extends Controller
 
         // Find the participant and their pivot record with the given programme
         $programme = Programme::findOrFail($programmeId);
-        $participant = Participant::findOrFail($participantId);
+        $participant = Participation::findOrFail($participantId);
 
         // Check if the participant is part of the programme
         $pivot = $programme->participants()->where('participant_id', $participant->id)->first();

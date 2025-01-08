@@ -88,6 +88,15 @@
             </div>
         </div>
 
+        <div class="col-md-6">
+            <label for="prog_default_point" class="form-label">Default Point:</label>
+            <input type="number" name="prog_default_point" id="prog_default_point" class="form-control" placeholder="Enter Default Point" value="{{ old('prog_default_point') }}" required min="0">
+            @error('prog_default_point')
+                <div class="text-danger mt-2">{{ $message }}</div>
+            @enderror
+        </div>
+
+
         <!-- Button Container (Centered) -->
         <div class="d-flex justify-content-between mt-5">
             <!-- Create Program Button -->
