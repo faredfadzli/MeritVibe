@@ -36,17 +36,6 @@ class UserSeeder2 extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'spr_nama' => 'fawwaz',
-                'spr_nokp' => '030710080015',
-                'ssm_matrik' => 'A22EC0210',
-                'ssm_kursus' => 'SECBH',
-                'is_profile_completed' => 1,
-                'role' => '1',  // Admin role or any other role you want
-                'remember_token' => null,  // Optional: Random token for "remember me" functionality
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
                 'spr_nama' => 'Azizah',
                 'spr_nokp' => '021114060304',
                 'ssm_matrik' => 'A22EM0018',
