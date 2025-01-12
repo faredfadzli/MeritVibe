@@ -194,8 +194,8 @@ class UserSeeder2 extends Seeder
             [
 
                 'spr_nama' => 'Syauqina',
-                'spr_nokp' => '030207011813',
-                'ssm_matrik' => 'A22EC0274',
+                'spr_nokp' => '020111060080',
+                'ssm_matrik' => 'A22EC0277',
                 'ssm_kursus' => 'SECBH',
                 'is_profile_completed' => 0,
                 'role' => '0',  // Admin role or any other role you want
@@ -206,8 +206,8 @@ class UserSeeder2 extends Seeder
             [
 
                 'spr_nama' => 'Afiqah',
-                'spr_nokp' => '030207011813',
-                'ssm_matrik' => 'A22EC0274',
+                'spr_nokp' => '030213010518',
+                'ssm_matrik' => 'A22EC0239',
                 'ssm_kursus' => 'SECBH',
                 'is_profile_completed' => 0,
                 'role' => '0',  // Admin role or any other role you want
