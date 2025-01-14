@@ -38,11 +38,12 @@
                         <td>{{ $programme->prog_place }}</td>
                         <td>
                             @if($programme->prog_poster)
-                                <a href="{{ asset('storage/' . $programme->prog_poster) }}" target="_blank" class="text-success">View</a>
+                                <img src="{{ asset('storage/' . $programme->prog_poster) }}" alt="Programme Poster" style="max-width: 100px; max-height: 100px;">
                             @else
-                                N/A
+                                <span>N/A</span>
                             @endif
                         </td>
+
                         <td>{{ $programme->prog_managed_by }}</td>
                         <td>{{ $programme->prog_pic_name }}</td>
                         <td>{{ $programme->prog_pic_email ?? 'N/A' }}</td>
