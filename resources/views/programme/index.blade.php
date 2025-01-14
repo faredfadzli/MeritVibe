@@ -38,7 +38,6 @@
                         <td>{{ $programme->prog_place }}</td>
                         <td>
                             @if($programme->prog_poster)
-                            {{-- Test --}}
                                 <img height="50%" width="50%" src="{{ asset('storage/' . $programme->prog_poster) }}" alt="Programme Poster" style="max-width: 100px; max-height: 100px;">
                             @else
                                 <span>N/A</span>
